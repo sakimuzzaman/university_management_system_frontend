@@ -19,7 +19,7 @@ Three fixed roles — **Admin**, **Instructor**, **Student** — with route-leve
 ## 1. Getting started
 
 ```bash
-cd ums-next
+cd University_Management_System_frontend
 cp .env.example .env.local      # set API_URL to your backend
 npm install
 npm run dev                     # http://localhost:3000
@@ -83,21 +83,115 @@ Browser ──► Next.js (this app) ──► Express API (/api/v1)
 ### Folder structure
 
 ```
-src/
-  app/
-    (public)/   page, about, services, pricing, contact, login, register, payment/{success,cancel}
-    (dashboard)/admin/…  dashboard/…  instructor/…   (+ loading.tsx per route, error.tsx)
-    api/auth/[action]/route.ts   api/proxy/[...path]/route.ts
-    layout.tsx  providers.tsx  error.tsx  global-error.tsx  not-found.tsx
-  components/   ui.tsx (Radix/shadcn), shared.tsx (StatCard, StatusBadge, EmptyState, DataTable bits…),
-                layout.tsx (navbar, footer, role-based sidebar), skeletons.tsx
-  views/        client page views (admin, admin2, admin3, student, student2, instructor, auth, payment)
-  hooks/        useDebounce, usePagination, useSearchParamsState, useSession, useInstructors…
-  lib/          api.ts (browser client), services.ts (typed endpoints), types.ts, utils.ts, roles.ts
-  lib/server/   api.ts (Server Component fetchers), tokens.ts (Edge-safe JWT/cookie helpers)
-  store/        authStore.tsx (Zustand)
-  middleware.ts
+University_Management_System_frontend/
+├── .env.example
+├── .gitignore
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── README.md
+├── tsconfig.json
+└── src/
+    ├── middleware.ts
+    ├── app/
+    │   ├── layout.tsx
+    │   ├── providers.tsx
+    │   ├── globals.css
+    │   ├── icon.svg
+    │   ├── error.tsx
+    │   ├── global-error.tsx
+    │   ├── not-found.tsx
+    │   ├── api/
+    │   │   ├── auth/[action]/route.ts
+    │   │   └── proxy/[...path]/route.ts
+    │   ├── (public)/
+    │   │   ├── layout.tsx
+    │   │   ├── loading.tsx
+    │   │   ├── page.tsx
+    │   │   ├── about/page.tsx
+    │   │   ├── contact/page.tsx
+    │   │   ├── login/page.tsx
+    │   │   ├── pricing/page.tsx
+    │   │   ├── register/page.tsx
+    │   │   ├── services/page.tsx
+    │   │   └── payment/
+    │   │       ├── cancel/page.tsx
+    │   │       └── success/page.tsx
+    │   └── (dashboard)/
+    │       ├── layout.tsx
+    │       ├── error.tsx
+    │       ├── admin/
+    │       │   ├── layout.tsx
+    │       │   ├── page.tsx
+    │       │   ├── loading.tsx
+    │       │   ├── academics/page.tsx
+    │       │   ├── academics/loading.tsx
+    │       │   ├── audit-logs/page.tsx
+    │       │   ├── audit-logs/loading.tsx
+    │       │   ├── sections/page.tsx
+    │       │   ├── sections/loading.tsx
+    │       │   ├── semesters/page.tsx
+    │       │   ├── semesters/loading.tsx
+    │       │   ├── users/page.tsx
+    │       │   └── users/loading.tsx
+    │       ├── dashboard/
+    │       │   ├── layout.tsx
+    │       │   ├── page.tsx
+    │       │   ├── loading.tsx
+    │       │   ├── attendance/page.tsx
+    │       │   ├── attendance/loading.tsx
+    │       │   ├── browse/page.tsx
+    │       │   ├── browse/loading.tsx
+    │       │   ├── payments/page.tsx
+    │       │   ├── payments/loading.tsx
+    │       │   ├── profile/page.tsx
+    │       │   ├── profile/loading.tsx
+    │       │   ├── results/page.tsx
+    │       │   ├── results/loading.tsx
+    │       │   ├── transcript/page.tsx
+    │       │   └── transcript/loading.tsx
+    │       └── instructor/
+    │           ├── layout.tsx
+    │           ├── page.tsx
+    │           ├── loading.tsx
+    │           ├── profile/page.tsx
+    │           ├── profile/loading.tsx
+    │           └── sections/[sectionId]/
+    │               ├── page.tsx
+    │               └── loading.tsx
+    ├── components/
+    │   ├── ui.tsx
+    │   ├── shared.tsx
+    │   ├── layout.tsx
+    │   └── skeletons.tsx
+    ├── hooks/hooks.ts
+    ├── lib/
+    │   ├── api.ts
+    │   ├── demo-accounts.ts
+    │   ├── roles.ts
+    │   ├── services.ts
+    │   ├── types.ts
+    │   ├── utils.ts
+    │   └── server/
+    │       ├── api.ts
+    │       └── tokens.ts
+    ├── store/authStore.tsx
+    ├── utils/cn.ts
+    └── views/
+        ├── admin.tsx
+        ├── admin2.tsx
+        ├── admin3.tsx
+        ├── admin-charts.tsx
+        ├── auth.tsx
+        ├── instructor.tsx
+        ├── payment.tsx
+        ├── public.tsx
+        ├── student.tsx
+        └── student2.tsx
 ```
+
+Generated and local-only files such as `.next/`, `node_modules/`, `.env.local`, and `next-env.d.ts` are excluded from this tree and ignored by Git.
 
 ---
 
